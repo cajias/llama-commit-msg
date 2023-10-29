@@ -1,9 +1,8 @@
 from langchain.llms import Ollama
-from langchain.chains import RetrievalQA
 
-ollama = Ollama(base_url='http://localhost:11434', model="codellama:13b")
 model = "codellama:13b"
-# qachain=RetrievalQA.from_chain_type(ollama, retriever=vectorstore.as_retriever())
+llama_url = "http://localhost:11434"
+ollama = Ollama(base_url=llama_url, model=model)
 
 def explain_diff(diff):
     content = diff["content"]
@@ -13,6 +12,10 @@ def explain_diff(diff):
     - Do not use your own knowledge.
     - Do not use your own opinion.
     - Do not use anything that is not in the diff.
+    - Don not use the character `"` or `'` in your answer.
+    - Be as concise as possible.
+    - Be as specific as possible.
+    - Be as accurate as possible.
     Task: Write a git commit message for the following diff
     ```
     {content}

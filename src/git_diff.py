@@ -1,7 +1,7 @@
 import git
 
 
-def staged_diffs(path):
+def staged_diffs(path: str):
     modified_files = []
     try:
         repo = git.Repo(path)
@@ -16,7 +16,7 @@ def staged_diffs(path):
         return modified_files
 
     except git.InvalidGitRepositoryError:
-        print(f"Error: {repo_path} is not a valid Git repository.")
+        print(f"Error: {path} is not a valid Git repository.")
     except git.NoSuchPathError:
-        print(f"Error: {repo_path} does not exist.")
+        print(f"Error: {path} does not exist.")
 
